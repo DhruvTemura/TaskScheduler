@@ -28,21 +28,25 @@ function scheduleTask(message, delaySeconds) {
         if (task.status === 'pending') {
             task.status = 'completed';
             task.completed_at = new Date().toISOString();
-            console.log(`Task ${taskId} completed: "${message}"`);
+            console.log(`Task ${taskID} completed: "${message}"`);
         }
     }, delaySeconds * 1000);
 
     // Stores task in Map
-    tasks.set(taskId, task);
+    tasks.set(taskID, task);
   
-    console.log(`Task ${taskId} scheduled for ${delaySeconds}s`);
+    console.log(`Task ${taskID} scheduled for ${delaySeconds}s`);
     return task;
 }
 
 
 
 //get all tasks - returns an array of tasks (pending and completed)
-
 function getAllTasks(){
-    return Array.from(tasks.values())
+    return Array.from(tasks.values()) //converts map values to array
+}
+
+//get specific tasks by ID
+function getTaskByID(taskID) {
+    return tasks.get(taskID)
 }
