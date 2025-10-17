@@ -1,10 +1,11 @@
 //this file contains all the task logic (creating, storing, completing, cancelling)
-
 const {v4: uuidv4} = require('uuid')
 
 //Using Map to store all tasks, as it has fast lookups by ID
-
+//key = taskID, value = task object
 const tasks = new Map()
+
+
 
 //Create new task - scheduled to complete after delay
 
@@ -36,4 +37,12 @@ function scheduleTask(message, delaySeconds) {
   
     console.log(`Task ${taskId} scheduled for ${delaySeconds}s`);
     return task;
+}
+
+
+
+//get all tasks - returns an array of tasks (pending and completed)
+
+function getAllTasks(){
+    return Array.from(tasks.values())
 }
