@@ -21,4 +21,13 @@ function scheduleTask(message, delaySeconds) {
         completed_at: null,
         _timeoutRef: null           //for cancelling timer if needed
     }
+
+    //a timer, that completes after delay
+    task._timeoutRef = setTimeout(() => {
+        if (task.status === 'pending') {
+            task.status = 'completed';
+            task.completed_at = new Date().toISOString();
+            console.log(`Task ${taskId} completed: "${message}"`);
+        }
+    }, delaySeconds * 1000);
 }
