@@ -30,4 +30,10 @@ function scheduleTask(message, delaySeconds) {
             console.log(`Task ${taskId} completed: "${message}"`);
         }
     }, delaySeconds * 1000);
+
+    // Stores task in Map
+    tasks.set(taskId, task);
+  
+    console.log(`Task ${taskId} scheduled for ${delaySeconds}s`);
+    return task;
 }
