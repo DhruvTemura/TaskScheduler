@@ -42,11 +42,41 @@ function scheduleTask(message, delaySeconds) {
 
 
 //get all tasks - returns an array of tasks (pending and completed)
+
 function getAllTasks(){
     return Array.from(tasks.values()) //converts map values to array
 }
 
+
+
 //get specific tasks by ID
+
 function getTaskByID(taskID) {
     return tasks.get(taskID)
+}
+
+
+
+//cancel a task
+
+function cancelTask(taskID) {
+    const task = tasks.get(tasksID)
+
+    if(!task){             //if a task doesnt exist
+        return null
+    }
+
+    if (task.status === 'completed') {    //already completed (cant cancel)
+        return task
+    }
+
+    if (task.status === 'pending') {       //cancelling task
+        clearTimeout(task._timeoutRef)
+        
+        task.status = 'canceled'           //updating task status
+        task.completed_at = new Date().toISOString()
+
+        console.log(`Task ${taskID} cancelled`)
+    }
+    return task;
 }
