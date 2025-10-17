@@ -73,10 +73,31 @@ function cancelTask(taskID) {
     if (task.status === 'pending') {       //cancelling task
         clearTimeout(task._timeoutRef)
         
-        task.status = 'canceled'           //updating task status
+        task.status = 'canceled'                     //updating task status
         task.completed_at = new Date().toISOString()
 
         console.log(`Task ${taskID} cancelled`)
     }
     return task;
+}
+
+
+
+//Removing extra fields before sending to client in API response
+
+function cleanTask(task) {
+    const{_timeoutRef, ...cleanedTask} = task
+    return cleanedTask;
+}
+
+
+//clear all tasks
+
+function clearAllTasks() {
+    tasks.forEach(task => {             //cancels all pending timers first
+        if(task._timeoutRef){
+            clearTimeout(task._timeoutRef)
+        }
+    })
+    tasks.clear();
 }
