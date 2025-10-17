@@ -101,3 +101,8 @@ function clearAllTasks() {
     })
     tasks.clear();
 }
+
+
+module.exports = {
+    scheduleTask, getAllTasks, getTaskByID, cancelTask, cleanTask, clearAllTasks
+}
