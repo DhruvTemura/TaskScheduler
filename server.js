@@ -98,3 +98,8 @@ app.get('/health', (req,res) => {
         timestamp: new Date().toISOString()
     })
 })
+
+
+app.listen(PORT, () => {
+    console.log(`App running on http://localhost:${PORT}`)
+})
