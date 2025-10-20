@@ -21,4 +21,11 @@ app.post('/schedule', (req,res) => {
             error: 'message must be a string'
         })
     }
+
+    //delay validation
+    if(typeof delay !== 'number' || delay < 0 || delay > 86400) {
+        return res.status(400).json ({
+            error: 'delay must be between 0 and 86400 seconds'
+        })
+    }
 })
