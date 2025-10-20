@@ -28,4 +28,8 @@ app.post('/schedule', (req,res) => {
             error: 'delay must be between 0 and 86400 seconds'
         })
     }
+
+    //create task and send response
+    const task = taskManager.scheduleTask(message.trim(), delay)
+    res.status(201).json(taskManager.cleanTask(task))
 })
