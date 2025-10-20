@@ -33,3 +33,15 @@ app.post('/schedule', (req,res) => {
     const task = taskManager.scheduleTask(message.trim(), delay)
     res.status(201).json(taskManager.cleanTask(task))
 })
+
+
+
+// GET /tasks - get all tasks
+
+app.get('/tasks', (req,res) => {
+    const allTasks = taskManager.getAllTasks()
+
+    //clean all tasks
+    const cleanedTasks = allTasks.map(taskManager.cleanTask) 
+    res.json(cleanedTasks)
+})
