@@ -45,3 +45,19 @@ app.get('/tasks', (req,res) => {
     const cleanedTasks = allTasks.map(taskManager.cleanTask) 
     res.json(cleanedTasks)
 })
+
+
+
+// GET /tasks/:id - specific task by id
+
+app.get('/tasks/:id', (req,res) => {
+    const task = taskManager.getTaskByID(req.params.id)
+
+    if (!task) {
+        return res.status(404).json({
+            error: 'task not found'
+        })
+    }
+
+    res.json(taskManager.cleanTask(task))
+})
