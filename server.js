@@ -87,3 +87,14 @@ app.delete('/tasks/:id', (req,res) => {
     //successfully canceled
     res.json(taskManager.cleanTask(task))
 })
+
+
+
+// GET /health - quick health check for the application
+
+app.get('/health', (req,res) => {
+    res.json({
+        status: 'ok',
+        timestamp: new Date().toISOString()
+    })
+})
