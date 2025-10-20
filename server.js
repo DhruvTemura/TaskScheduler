@@ -6,3 +6,4 @@ const taskManager = require('./taskManager')
 const app = express()
 const PORT = process.env || 3000
 
+app.use(express.json())   //middleware
