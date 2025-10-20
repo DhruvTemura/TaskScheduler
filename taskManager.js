@@ -91,18 +91,6 @@ function cleanTask(task) {
 }
 
 
-//clear all tasks
-
-function clearAllTasks() {
-    tasks.forEach(task => {             //cancels all pending timers first
-        if(task._timeoutRef){
-            clearTimeout(task._timeoutRef)
-        }
-    })
-    tasks.clear();
-}
-
-
 module.exports = {
-    scheduleTask, getAllTasks, getTaskByID, cancelTask, cleanTask, clearAllTasks
+    scheduleTask, getAllTasks, getTaskByID, cancelTask, cleanTask
 }
