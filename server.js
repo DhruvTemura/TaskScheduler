@@ -61,3 +61,29 @@ app.get('/tasks/:id', (req,res) => {
 
     res.json(taskManager.cleanTask(task))
 })
+
+
+
+// DELETE /tasks/:id - delete a task
+
+app.delete('/tasks/:id', (req,res) => {
+    const task = taskManager.cancelTask(req.params.id)
+
+    //if task doesnt exist
+    if (!task) {
+        return res.status(404).json({
+            error: 'task not found'
+        })
+    }
+
+    //task already completed - cant cancel
+    if (task.status === 'completed') {
+        return res.status(409).json({
+            error : 'cant cancel - task already completed',
+            task: taskManager.cleanTask(task)
+        })
+    }
+
+    //successfully canceled
+    res.json(taskManager.cleanTask(task))
+})
