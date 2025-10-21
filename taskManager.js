@@ -17,7 +17,7 @@ function scheduleTask(message, delaySeconds) {
         task_id: taskID,
         message: message,
         delay: delaySeconds,
-        status: 'task pending',
+        status: 'pending',
         scheduled_at: new Date().toISOString(),
         completed_at: null,
         _timeoutRef: null           //for cancelling timer if needed
@@ -60,7 +60,7 @@ function getTaskByID(taskID) {
 //cancel a task
 
 function cancelTask(taskID) {
-    const task = tasks.get(tasksID)
+    const task = tasks.get(taskID)
 
     if(!task){             //if a task doesnt exist
         return null
